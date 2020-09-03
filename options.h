@@ -1,0 +1,12 @@
+#ifndef __YAM_OPTIONS_H
+#define __YAM_OPTIONS_H
+
+#ifndef YAM_REG_RANGE_CONTROL
+#define YAM_REG_RANGE_CONTROL 1
+#endif
+
+#ifndef YAM_REG_LOAD_STORE_SPECIAL_HANDLING
+#define YAM_REG_LOAD_STORE_SPECIAL_HANDLING 1
+#endif
+
+#endif /* __YAM_OPTIONS_H */

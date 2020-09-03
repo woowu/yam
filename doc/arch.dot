@@ -1,0 +1,43 @@
+digraph {
+    splines = line;
+    subgraph cluster_yam {
+        label = "Yam";
+        subgraph cluster_appl {
+            label = "Appl";
+            appl; read_coils_handler; read_holding_regs_handler; write_regs_handler; register; regval;
+        }
+        subgraph cluster_link {
+            label = "Link";
+            serial_link;
+        }
+    }
+    subgraph cluster_link_binding {
+        label = "Link Binding";
+        send_frame_cb[shape=none];
+    }
+    subgraph cluster_compiler {
+        label = "Compiler";
+        __register_start[shape=none]; __register_end[shape=none];
+    }
+    subgraph cluster_store {
+        label = "Store";
+        regstore_cb;
+    }
+
+    appl -> read_coils_handler;
+    appl -> read_holding_regs_handler;
+    appl -> write_regs_handler;
+    read_coils_handler -> register;
+    read_holding_regs_handler -> register;
+    write_regs_handler -> register;
+    register -> regval;
+    register -> __register_start;
+    register -> __register_end;
+    register -> regstore_cb [style=dashed];
+    serial_link -> appl;
+    serial_link -> send_frame_cb [style=dashed];
+
+    regval -> __register_start [style=invis];
+    regval -> __register_end [style=invis];
+    regval -> regstore_cb [style=invis];
+}

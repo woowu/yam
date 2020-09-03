@@ -1,0 +1,19 @@
+digraph {
+    splines = line;
+    subgraph cluster_link_bindings {
+        label="Link Bindings";
+        tcp_server[style=filled; color=".7 .3 1.0"];
+        rs485_transmitter[style=filled; color=".7 .3 1.0"];
+    }
+    subgraph cluster_register_impl {
+        label="Register Implementation";
+        register_defs[style=filled; color=".7 .3 1.0"];
+        register_store[style=filled; color=".7 .3 1.0"];
+    }
+
+    tcp_server -> Yam;
+    rs485_transmitter -> Yam;
+    register_defs -> Yam;
+    register_store -> Yam;
+}
+
